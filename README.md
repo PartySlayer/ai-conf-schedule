@@ -21,5 +21,13 @@ Un’app single-page che permette ai partecipanti di AIConf2025 di costruirsi un
 
 ![aiconf drawio](https://github.com/user-attachments/assets/fba8de02-2387-49b7-93c4-6096bc787659)
 
-Scopri come ho fatto step by step all'interno dei docs!
 
+## 💼 Di cosa vado fiero
+
+- **Architettura & Operazioni**: provisioning e hardening dei servizi AWS  
+- **Ottimizzazione**: configurazione header HTTP e TTL cache  
+- **Single-page solution**: nessun database, nessuna logica di autenticazione server-side — tutto è client-side per garantire semplicità, privacy e rapidità di deployment  
+
+**Nota**: la maggior parte del frontend è stata generata via AI; il mio contributo principale è stato l’ingegneria cloud e l’attenzione alla privacy e all’usabilità.
+
+> Scopri come ho fatto step by step all'interno dei docs!
