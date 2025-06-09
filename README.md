@@ -1,6 +1,6 @@
 # AIConf 2025 Scheduler
 
-https://www.aiconf-schedule.xyz/
+www.aiconf-schedule.xyz
 
 Un’app single-page che permette ai partecipanti di AIConf2025 di costruirsi un programma personalizzato in pochi click.
 
