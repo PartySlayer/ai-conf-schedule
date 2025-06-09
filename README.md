@@ -1,4 +1,5 @@
 # AIConf 2025 Scheduler
+![image](https://github.com/user-attachments/assets/783278f4-b433-49fd-bc54-340dd401e9d8)
 
 www.aiconf-schedule.xyz
 
@@ -21,3 +22,4 @@ Un’app single-page che permette ai partecipanti di AIConf2025 di costruirsi un
 ![aiconf drawio](https://github.com/user-attachments/assets/fba8de02-2387-49b7-93c4-6096bc787659)
 
 Scopri come ho fatto step by step all'interno dei docs!
+
