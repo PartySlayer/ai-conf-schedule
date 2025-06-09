@@ -30,4 +30,4 @@ Un’app single-page che permette ai partecipanti di AIConf2025 di costruirsi un
 
 **Nota**: la maggior parte del frontend è stata generata via AI; il mio contributo principale è stato l’ingegneria cloud e l’attenzione alla privacy e all’usabilità.
 
-> Scopri come ho fatto step by step all'interno dei docs!
+Scopri come ho fatto step by step all'interno dei docs!
