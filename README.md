@@ -28,6 +28,6 @@ Un’app single-page che permette ai partecipanti di AIConf2025 di costruirsi un
 - **Ottimizzazione**: configurazione header HTTP e TTL cache  
 - **Single-page solution**: nessun database, nessuna logica di autenticazione server-side — tutto è client-side per garantire semplicità, privacy e rapidità di deployment  
 
-**Nota**: la maggior parte del frontend è stata generata via AI; il mio contributo principale è stato l’ingegneria cloud e l’attenzione alla privacy e all’usabilità.
+**Nota**: tutto il frontend e quasi l'intero codice è stata generato via AI; il mio contributo principale è stato il deploy in cloud e l’attenzione alla privacy e all’usabilità.
 
 Scopri come ho fatto step by step all'interno dei docs!
