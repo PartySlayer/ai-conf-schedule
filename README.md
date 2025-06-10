@@ -5,6 +5,8 @@ www.aiconf-schedule.xyz
 
 Un’app single-page che permette ai partecipanti di AIConf2025 di costruirsi un programma personalizzato in pochi click.
 
+Agenda ufficiale: https://www.aiconf.it/e/3586/AI-Conf-2025
+
 ----------------
 
 ## 🚀 Panoramica
