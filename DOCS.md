@@ -52,6 +52,9 @@ Per questo ho utilizzato ACM (AWS Certificate Manager) per creare, validare e as
 
 ![ACM - richiesta certificato](media/image9.png)
 ![ACM - validazione DNS](media/image10.png)
+
+Aggiungendo i CNAME record a DNS permettiamo ad ACM di validare il certificato:
+![ACM - CNAME DNS](media/image10b.png)
 ![ACM - certificato ottenuto](media/image11.png)
 
 ---
@@ -73,8 +76,6 @@ Qui ho specificato di voler creare un record CNAME, inserendo il dominio acquist
 Nella stessa Hosted Zone ho creato un record **A** per mappare `aiconf-schedule.xyz` alla distribuzione CloudFront:
 
 ![Record A Route 53](media/image14.png)
-![Record A pending](media/image15.png)
-![Record A in sync](media/image16.png)
 
 Una volta che la propagazione DNS è avvenuta correttamente, è possibile visitare la pagina web in HTTPS utilizzando l’URL personalizzato:
 
@@ -88,11 +89,11 @@ Adesso però il bucket è ancora accessibile pubblicamente; voglio che il sito s
 
 ![Bucket ancora pubblico](media/image18.png)
 
-1. Ho rimosso l’opzione di web hosting S3 e bloccato l’accesso pubblico.
+Prima ho rimosso l’opzione di web hosting S3 e bloccato l’accesso pubblico:
 
 ![Blocca accesso pubblico](media/image19.png)
 
-2. Ho modificato la policy in modo che solo la distribuzione CloudFront possa leggere dal bucket.
+Poi ho modificato la policy in modo che solo la distribuzione CloudFront possa leggere dal bucket:
 
 ![Nuova bucket policy](media/image20.png)
 
