@@ -975,7 +975,7 @@
                 const header = document.createElement('div');
                 header.className = 'time-header';
                 // Mostra l'ora e la durata del blocco
-                header.innerHTML = `<div class="time-title">${slot.time} - ${slot.time} (${slot.duration} min)</div>`;
+                header.innerHTML = `<div class="time-title">${slot.time} - (${slot.duration} min)</div>`;
                 
                 const tracks = document.createElement('div');
                 tracks.className = 'tracks';
@@ -1247,8 +1247,8 @@ X-WR-CALNAME:AI Conf 2025 - Il mio programma\n`;
                     const slot = scheduleData.find(s => s.time === talk.time);
                     if (!slot) return;
                     
-                    // Data fittizia per gli eventi (es. 7 Giugno 2025)
-                    const date = new Date(2025, 5, 7); 
+                    // Data calendar
+                    const date = new Date(2025, 6, 25); 
                     const [hours, minutes] = talk.time.split(':').map(Number);
                     date.setHours(hours, minutes);
                     
