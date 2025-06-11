@@ -153,3 +153,30 @@ Una volta terminata l'integrazione tra GitHub Actions e AWS, ho scritto la pipel
 Ogni push del repo, il file ai-conf-schedule.html viene copiato all'interno del bucket come index.html
 
 Nonostante il prossimo push includerà questi DOCS aggiornati, infatti, solamente il file ai-conf-schedule.html verrà aggiunto al bucket!
+
+Dopo il commit ho effettuato il push:
+
+![alt text](media/image33.png)
+
+Il workflow è stato triggerato da questa azione:
+
+![alt text](media/image34.png)
+
+Worflow terminato con successo:
+
+![alt text](media/image35.png)
+
+Una parte fondamentale della pipeline è l'invalidazione della cache in seguito al sync del bucket:
+
+![alt text](media/image36.png)
+
+Senza invalidazione, cloudfront continuerebbe a servire il file in cache non permettendo a gli utenti di visualizzare le novità all'interno del sito.
+
+All'interno del bucket possiamo verificare che il file è stato aggiungo correttamente:
+
+![alt text](media/image37.png)
+
+Le modifiche sono state applicate anche al sito, adesso è possibile condividere il proprio programma!
+
+![alt text](media/image38.png)
+
