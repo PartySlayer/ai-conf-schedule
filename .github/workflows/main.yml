@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - main 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # scrittura token per l'autenticazione openId
+      contents: read  # lettura contenuto del repo
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+
+    - name: Credentiali AWS
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::010526280017:role/GitHub_Actions_Role
+        aws-region: eu-south-1
+
+    - name: Sync S3 Bucket
+      run: |
+        aws s3 cp ai-conf-schedule.html s3://www.aiconf-schedule.xyz/index.html --content-type "text/html"
+
+    - name: Invalida Cache
+      run: |
+        aws cloudfront create-invalidation --distribution-id E3LQ1B1Z3W1VFV --paths "/index.html"

@@ -6,59 +6,74 @@
     <title>Pianifica la tua giornata - AI Conf 2025</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Variabili CSS per colori e temi */
         :root {
             --primary: #1a3a6c;
             --secondary: #e63946;
             --accent: #2a9d8f;
             --light: #f1faee;
             --dark: #1d3557;
+            --success: #4caf50;
+            --warning: #ff9800;
         }
-        
+
+        /* Reset e stili base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
+        /* Stili Header */
         header {
             background: linear-gradient(135deg, var(--primary), var(--dark));
             color: white;
             padding: 20px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
         }
-        
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             display: flex;
             align-items: center;
         }
-        
+
         .logo i {
             margin-right: 10px;
             color: var(--accent);
         }
         
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light);
+        }
+
+        /* Stili Tabs */
         .tabs {
             display: flex;
             background: white;
@@ -67,7 +82,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin: 25px 0;
         }
-        
+
         .tab {
             flex: 1;
             text-align: center;
@@ -78,28 +93,29 @@
             color: var(--dark);
             background: #e9ecef;
         }
-        
+
         .tab.active {
             background: var(--primary);
             color: white;
         }
-        
+
         .tab:hover:not(.active) {
             background: #d0d5db;
         }
-        
+
         .tab-content {
             display: none;
         }
-        
+
         .tab-content.active {
             display: block;
         }
-        
+
+        /* Stili Time Slots (programma conferenza) */
         .time-slots {
             margin-top: 20px;
         }
-        
+
         .time-slot {
             background: white;
             border-radius: 8px;
@@ -108,7 +124,7 @@
             overflow: hidden;
             border-left: 4px solid var(--accent);
         }
-        
+
         .time-header {
             background: var(--light);
             padding: 15px 20px;
@@ -119,18 +135,18 @@
             color: var(--dark);
             border-bottom: 1px solid #e9ecef;
         }
-        
+
         .time-title {
             font-size: 1.2rem;
         }
-        
+
         .tracks {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             padding: 20px;
         }
-        
+
         .track-card {
             background: #f8f9fa;
             border-radius: 8px;
@@ -139,12 +155,12 @@
             transition: all 0.3s ease;
             position: relative;
         }
-        
+
         .track-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
-        
+
         .track-header {
             display: flex;
             justify-content: space-between;
@@ -153,13 +169,13 @@
             padding-bottom: 10px;
             border-bottom: 1px solid #e9ecef;
         }
-        
+
         .track-name {
             font-weight: 600;
             color: var(--primary);
             font-size: 1.1rem;
         }
-        
+
         .track-lang {
             background: var(--accent);
             color: white;
@@ -168,21 +184,21 @@
             font-size: 0.8rem;
             font-weight: 500;
         }
-        
+
         .talk-title {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--dark);
         }
-        
+
         .speaker {
             font-size: 0.9rem;
             color: #6c757d;
             margin-bottom: 15px;
             font-style: italic;
         }
-        
+
         .add-btn {
             background: var(--primary);
             color: white;
@@ -197,66 +213,74 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .add-btn:hover {
             background: var(--secondary);
         }
-        
+
         .add-btn i {
             margin-right: 8px;
         }
-        
+
         .add-btn.added {
             background: var(--accent);
         }
-        
+
+        /* Stili Schedule Container (il mio programma) */
         .schedule-container {
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             padding: 20px;
         }
-        
+
         .schedule-item {
             display: flex;
             padding: 15px;
             border-bottom: 1px solid #e9ecef;
             align-items: flex-start;
+            position: relative; /* Per posizionare il pulsante Rimuovi */
         }
-        
+
         .schedule-item:last-child {
             border-bottom: none;
         }
-        
+
         .schedule-time {
             min-width: 80px;
             font-weight: 600;
             color: var(--primary);
             font-size: 1.1rem;
         }
-        
+
         .schedule-content {
             flex: 1;
         }
-        
+
         .schedule-title {
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--dark);
         }
-        
+
         .schedule-track {
             color: var(--accent);
             font-size: 0.9rem;
             font-weight: 500;
             margin-bottom: 5px;
         }
-        
+
         .schedule-speaker {
             color: #6c757d;
             font-size: 0.9rem;
         }
         
+        .schedule-lang {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
         .remove-btn {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
@@ -265,32 +289,37 @@
             padding: 5px 10px;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: absolute;
+            right: 15px;
+            top: 15px;
         }
-        
+
         .remove-btn:hover {
             background: #dc3545;
             color: white;
         }
-        
+
         .empty-schedule {
             text-align: center;
             padding: 40px 20px;
             color: #6c757d;
         }
-        
+
         .empty-schedule i {
             font-size: 3rem;
             margin-bottom: 15px;
             color: #ced4da;
         }
-        
+
+        /* Stili Azioni (Salva, Condividi, Esporta) */
         .actions {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 25px;
+            flex-wrap: wrap; /* Per la responsività */
         }
-        
+
         .action-btn {
             padding: 12px 25px;
             border: none;
@@ -301,29 +330,35 @@
             align-items: center;
             transition: all 0.3s ease;
         }
-        
+
         .save-btn {
             background: var(--primary);
             color: white;
         }
-        
+
         .save-btn:hover {
             background: var(--dark);
         }
-        
+
         .share-btn {
             background: var(--accent);
             color: white;
         }
-        
+
         .share-btn:hover {
             background: #218f7d;
         }
         
+        .export-btn {
+            background: var(--success);
+            color: white;
+        }
+
         .action-btn i {
             margin-right: 8px;
         }
-        
+
+        /* Stili Footer */
         footer {
             background: var(--dark);
             color: white;
@@ -331,18 +366,214 @@
             padding: 20px;
             margin-top: 40px;
         }
+
+        /* Stili Modal di condivisione */
+        .modal {
+            display: none; /* Nascosto di default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+        }
+
+        .share-options {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .share-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-icon.facebook {
+            background: #3b5998;
+        }
+
+        .share-icon.twitter {
+            background: #1da1f2;
+        }
+
+        .share-icon.linkedin {
+            background: #0077b5;
+        }
+
+        .share-icon.whatsapp {
+            background: #25d366;
+        }
+
+        .share-icon i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .share-link {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .share-link input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* Stili Notifiche */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+        }
+
+        .notification.error {
+            background: var(--secondary);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(20px); }
+        }
+
+        /* Stili Barra Statistiche */
+        .stats-bar {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Per la responsività */
+            gap: 15px; /* Spazio tra gli elementi */
+        }
         
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0; /* Previene il ridimensionamento dell'icona */
+        }
+        
+        .stat-text {
+            font-size: 0.9rem;
+        }
+        
+        .stat-number {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* Media Queries per la responsività */
         @media (max-width: 768px) {
             .tracks {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Una colonna su schermi piccoli */
             }
             
             .schedule-item {
-                flex-direction: column;
+                flex-direction: column; /* Impila gli elementi verticalmente */
             }
             
             .schedule-time {
                 margin-bottom: 10px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .remove-btn {
+                position: static; /* Rimuovi posizionamento assoluto */
+                margin-top: 10px;
+                width: 100%; /* Occupa tutta la larghezza disponibile */
             }
         }
     </style>
@@ -353,6 +584,10 @@
             <div class="logo">
                 <i class="fas fa-robot"></i>
                 <span>AI Conf 2025 - Il mio programma</span>
+            </div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span id="username">Ospite</span>
             </div>
         </div>
     </header>
@@ -368,16 +603,46 @@
             <p>Fai clic su "Aggiungi al mio programma" per ciascun talk che ti interessa</p>
             
             <div class="time-slots" id="time-slots">
-                <!-- Generated by JavaScript -->
+                <!-- Contenuto generato da JavaScript -->
             </div>
         </div>
         
         <div class="tab-content" id="my-schedule">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-text">
+                        <div>Talk selezionati</div>
+                        <div class="stat-number" id="stat-talks">0</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-text">
+                        <div>Durata totale</div>
+                        <div class="stat-number" id="stat-duration">0 min</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="stat-text">
+                        <div>Lingue</div>
+                        <div class="stat-number" id="stat-languages">0</div>
+                    </div>
+                </div>
+            </div>
+
             <h2>Il mio programma personalizzato</h2>
             <p>Ecco i talk che hai selezionato per la tua giornata</p>
             
             <div class="schedule-container" id="schedule-container">
-                <!-- Generated by JavaScript -->
+                <!-- Contenuto generato da JavaScript -->
             </div>
             
             <div class="actions">
@@ -387,6 +652,38 @@
                 <button class="action-btn share-btn" id="share-btn">
                     <i class="fas fa-share-alt"></i> Condividi
                 </button>
+                <button class="action-btn export-btn" id="export-btn">
+                    <i class="fas fa-file-export"></i> Esporta
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal di condivisione -->
+    <div class="modal" id="share-modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2 class="modal-header">Condividi il tuo programma</h2>
+            <div class="modal-body">
+                <p>Condividi il tuo programma con amici e colleghi:</p>
+                <div class="share-link">
+                    <input type="text" id="share-link-input" readonly>
+                    <button class="copy-btn" id="copy-link-btn">Copia</button>
+                </div>
+                <div class="share-options">
+                    <div class="share-icon facebook" title="Condividi su Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="share-icon twitter" title="Condividi su Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="share-icon linkedin" title="Condividi su LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <div class="share-icon whatsapp" title="Condividi su WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -396,267 +693,280 @@
     </footer>
 
     <script>
-        // Conference schedule data
+        // Dati del programma della conferenza
         const scheduleData = [
-    {
-        time: "9:30",
-        tracks: [
             {
-                track: "Track 1 - Data Science",
-                title: "Keynote",
-                speakers: [],
-                language: "Italiano",
-                link: null
-            },
-            null,
-            null,
-            null
-        ]
-    },
-    {
-        time: "10:00",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "Agents: the next frontier in AI",
-                speakers: ["Lucrezia Noli (Google)"],
-                language: "Inglese",
-                link: "/eventi/sessione/3702/Agents-the-next-frontier-in-AI"
+                time: "9:30",
+                duration: 30, // Durata in minuti
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "Keynote",
+                        speakers: [],
+                        language: "Italiano",
+                        link: null
+                    },
+                    null,
+                    null,
+                    null
+                ]
             },
             {
-                track: "Track 2 - Use cases",
-                title: "Ottimizzazione dei prezzi in Subito: un approccio bayesiano al Multi-Armed Bandit",
-                speakers: ["Mattia Ridolfo (Subito)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3698/Ottimizzazione-dei-prezzi-in-Subito-un-approccio-bayesiano-al-Multi-Armed-Bandit"
+                time: "10:00",
+                duration: 45,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "Agents: the next frontier in AI",
+                        speakers: ["Lucrezia Noli (Google)"],
+                        language: "Inglese",
+                        link: "/eventi/sessione/3702/Agents-the-next-frontier-in-AI"
+                    },
+                    {
+                        track: "Track 2 - Use cases",
+                        title: "Ottimizzazione dei prezzi in Subito: un approccio bayesiano al Multi-Armed Bandit",
+                        speakers: ["Mattia Ridolfo (Subito)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3698/Ottimizzazione-dei-prezzi-in-Subito-un-approccio-bayesiano-al-Multi-Armed-Bandit"
+                    },
+                    null,
+                    {
+                        track: "Track 4 - Ops & Tech",
+                        title: "There's no AI without APIs",
+                        speakers: ["Talia Kohan Nassi (Postman)"],
+                        language: "Inglese",
+                        link: "/eventi/sessione/3724/There-s-no-AI-without-APIs"
+                    }
+                ]
             },
-            null,
             {
-                track: "Track 4 - Ops & Tech",
-                title: "There's no AI without APIs",
-                speakers: ["Talia Kohan Nassi (Postman)"],
-                language: "Inglese",
-                link: "/eventi/sessione/3724/There-s-no-AI-without-APIs"
+                time: "10:45",
+                duration: 75,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "Model Context Protocol, ovvero come liberare gli LLM e dargli accesso a tutto il mondo",
+                        speakers: ["Alessandro Vitale (Conversate)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3714/Model-Context-Protocol-ovvero-come-liberare-gli-LLM-e-dargli-accesso-a-tutto-il-mondo"
+                    },
+                    {
+                        track: "Track 2 - Use cases",
+                        title: "Analisi del Comportamento: costruzione di un agent che osserva e dialoga",
+                        speakers: ["Iulian Gabriel Coltea (Key2)", "Giovanni Nardini (Key2)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3733/Analisi-del-Comportamento-costruzione-di-un-agent-che-osserva-e-dialoga"
+                    },
+                    {
+                        track: "Track 3 - Executive",
+                        title: "Mercato del lavoro ICT: una analisi data-driven",
+                        speakers: ["Leopoldo Mondauto (Sviluppo Lavoro Italia)", "Marco Manieri (Sviluppo Lavoro Italia)"],
+                        language: "Italiano",
+                        link: null
+                    },
+                    {
+                        track: "Track 4 - Ops & Tech",
+                        title: "The Enterprise AI Developer's Playbook: LLMs, Agents, and Large-Scale Code Management",
+                        speakers: ["Alexio Cassani (FairMind srl Società Benefit)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3720/The-Enterprise-AI-Developer-s-Playbook-LLMs-Agents-and-Large-Scale-Code-Management"
+                    }
+                ]
+            },
+            {
+                time: "12:00",
+                duration: 45,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "Dentro le allucinazioni nell'AI",
+                        speakers: ["Federica Pampurini (Softlab S.p.A)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3701/Dentro-le-allucinazioni-nell&#x2019;AI"
+                    },
+                    {
+                        track: "Track 2 - Use cases",
+                        title: "Eutelsat: il Customer Incident Agent",
+                        speakers: ["Pierangelo Lombardo (Eutelsat Group)", "Antonio Casoli (EutelsatGroup)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3706/Eutelsat-il-Customer-Incident-Agent"
+                    },
+                    {
+                        track: "Track 3 - Executive",
+                        title: "Data & AI in Italia: facciamo il punto (roundtable)",
+                        speakers: ["Andrea D'Onofrio (Microsoft)", "Carlo Vercellis (Politecnico di Milano)", "Marco Bani (Gruppo PD - Senato)"],
+                        language: "Italiano",
+                        link: null
+                    },
+                    null
+                ]
+            },
+            {
+                time: "12:45",
+                duration: 45,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "Strategie per la preparazione dei documenti in Generative AI",
+                        speakers: ["Raffaele Rialdi"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3700/Strategie-per-la-preparazione-dei-documenti-in-Generative-AI"
+                    },
+                    {
+                        track: "Track 2 - Use cases",
+                        title: "Sviluppo e adozione di GenAI all'interno dell'azienda, l'esperienza di Acer",
+                        speakers: ["Emanuele Meazzo (Acer Europe)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3705/Sviluppo-e-adozione-di-GenAI-all-interno-dell-azienda-l-esperienza-di-Acer"
+                    },
+                    {
+                        track: "Track 3 - Executive",
+                        title: "La governance del dato (roundtable)",
+                        speakers: ["Roberto Messora (Jakala)"],
+                        language: "Italiano",
+                        link: null
+                    },
+                    {
+                        track: "Track 4 - Ops & Tech",
+                        title: "Amazon Q and Amazon Bedrock, fully managed vs. custom",
+                        speakers: ["Alessandra Bilardi (Corley Cloud)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3727/Amazon-Q-and-Amazon-Bedrock-fully-managed-vs-custom"
+                    }
+                ]
+            },
+            {
+                time: "14:45",
+                duration: 45,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "Numeri e simboli: fenomenologia dell'AI di ieri, oggi e domani",
+                        speakers: ["Paolo Caressa (GSE spa)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3707/Numeri-e-simboli-fenomenologia-dell-AI-di-ieri-oggi-e-domani"
+                    },
+                    {
+                        track: "Track 2 - Use cases",
+                        title: "Assistente virtuale al cittadino: un caso di MultiAgent distribuiti",
+                        speakers: ["Tommaso Stocchi (Microsoft)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3715/Assistente-virtuale-al-cittadino-un-caso-di-MultiAgent-distribuiti"
+                    },
+                    {
+                        track: "Track 3 - Executive",
+                        title: "AI come fattore di innovazione (roundtable)",
+                        speakers: ["Piergiorgio Grossi (Credem)", "Luigi Bianchi (Fastweb + Vodafone)", "Francesco Ciuccarelli (Alpitour World)"],
+                        language: "Italiano",
+                        link: null
+                    },
+                    {
+                        track: "Track 4 - Ops & Tech",
+                        title: "AI + A11Y = Surfa il web senza tavola...e senza mani!",
+                        speakers: ["Francesco Sciuti (Devmy)"],
+                        language: "Italiano",
+                        link: "/eventi/sessione/3703/AI--A11Y-=-Surfa-il-web-senza-tavola--e-senza-mani"
+                    }
+                ]
+            },
+            {
+                time: "15:30",
+                duration: 45,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "OpenAI o1/o3: the New Scaling Laws for LLMs that can reason",
+                        speakers: ["Luca Baggi (xtream)"],
+                        language: "Inglese",
+                        link: null
+                    },
+                    {
+                        track: "Track 2 - Use cases",
+                        title: "Da Software as a Service a Agent as a Service",
+                        speakers: ["Stefano Bruna (adesso.it)"],
+                        language: "Italiano",
+                        link: null
+                    },
+                    {
+                        track: "Track 3 - Executive",
+                        title: "AI, dalla prospettiva CTO (roundtable)",
+                        speakers: ["Francesco Dominidiato (Moneyfarm)", "Frediano Lorenzin (Dell)"],
+                        language: "Italiano",
+                        link: null
+                    },
+                    {
+                        track: "Track 4 - Ops & Tech",
+                        title: "We need to talk about AI, Sustainable AI",
+                        speakers: ["Serena Sensini (Dedalus)", "Valeria Salis"],
+                        language: "Inglese",
+                        link: null
+                    }
+                ]
+            },
+            {
+                time: "16:45",
+                duration: 45,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "From SHAP to EBM: Explain your Gradient Boosting Models in Python",
+                        speakers: ["Emanuele Fabbiani (xtream)"],
+                        language: "Inglese",
+                        link: null
+                    },
+                    null,
+                    null,
+                    {
+                        track: "Track 4 - Ops & Tech",
+                        title: "Serving LLMs on Kubernetes",
+                        speakers: ["Matteo Mortari (Red Hat)", "Daniele Zonca (Red Hat)"],
+                        language: "Inglese",
+                        link: null
+                    }
+                ]
+            },
+            {
+                time: "17:30",
+                duration: 45,
+                tracks: [
+                    {
+                        track: "Track 1 - Data Science",
+                        title: "1.58 bit LLM",
+                        speakers: ["Enzo Lombardi (Cleafy)"],
+                        language: "Italiano",
+                        link: null
+                    },
+                    null,
+                    null,
+                    {
+                        track: "Track 4 - Ops & Tech",
+                        title: "Edge AI: L'intelligenza Artificiale a portata di dispositivo",
+                        speakers: ["Leonardo Cavagnis (Arduino)"],
+                        language: "Italiano",
+                        link: null
+                    }
+                ]
             }
-        ]
-    },
-    {
-        time: "10:45",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "Model Context Protocol, ovvero come liberare gli LLM e dargli accesso a tutto il mondo",
-                speakers: ["Alessandro Vitale (Conversate)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3714/Model-Context-Protocol-ovvero-come-liberare-gli-LLM-e-dargli-accesso-a-tutto-il-mondo"
-            },
-            {
-                track: "Track 2 - Use cases",
-                title: "Analisi del Comportamento: costruzione di un agent che osserva e dialoga",
-                speakers: ["Iulian Gabriel Coltea (Key2)", "Giovanni Nardini (Key2)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3733/Analisi-del-Comportamento-costruzione-di-un-agent-che-osserva-e-dialoga"
-            },
-            {
-                track: "Track 3 - Executive",
-                title: "Mercato del lavoro ICT: una analisi data-driven",
-                speakers: ["Leopoldo Mondauto (Sviluppo Lavoro Italia)", "Marco Manieri (Sviluppo Lavoro Italia)"],
-                language: "Italiano",
-                link: null
-            },
-            {
-                track: "Track 4 - Ops & Tech",
-                title: "The Enterprise AI Developer's Playbook: LLMs, Agents, and Large-Scale Code Management",
-                speakers: ["Alexio Cassani (FairMind srl Società Benefit)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3720/The-Enterprise-AI-Developer-s-Playbook-LLMs-Agents-and-Large-Scale-Code-Management"
-            }
-        ]
-    },
-    {
-        time: "12:00",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "Dentro le allucinazioni nell'AI",
-                speakers: ["Federica Pampurini (Softlab S.p.A)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3701/Dentro-le-allucinazioni-nell&#x2019;AI"
-            },
-            {
-                track: "Track 2 - Use cases",
-                title: "Eutelsat: il Customer Incident Agent",
-                speakers: ["Pierangelo Lombardo (Eutelsat Group)", "Antonio Casoli (EutelsatGroup)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3706/Eutelsat-il-Customer-Incident-Agent"
-            },
-            {
-                track: "Track 3 - Executive",
-                title: "Data & AI in Italia: facciamo il punto (roundtable)",
-                speakers: ["Andrea D'Onofrio (Microsoft)", "Carlo Vercellis (Politecnico di Milano)", "Marco Bani (Gruppo PD - Senato)"],
-                language: "Italiano",
-                link: null
-            },
-            null
-        ]
-    },
-    {
-        time: "12:45",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "Strategie per la preparazione dei documenti in Generative AI",
-                speakers: ["Raffaele Rialdi"],
-                language: "Italiano",
-                link: "/eventi/sessione/3700/Strategie-per-la-preparazione-dei-documenti-in-Generative-AI"
-            },
-            {
-                track: "Track 2 - Use cases",
-                title: "Sviluppo e adozione di GenAI all'interno dell'azienda, l'esperienza di Acer",
-                speakers: ["Emanuele Meazzo (Acer Europe)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3705/Sviluppo-e-adozione-di-GenAI-all-interno-dell-azienda-l-esperienza-di-Acer"
-            },
-            {
-                track: "Track 3 - Executive",
-                title: "La governance del dato (roundtable)",
-                speakers: ["Roberto Messora (Jakala)"],
-                language: "Italiano",
-                link: null
-            },
-            {
-                track: "Track 4 - Ops & Tech",
-                title: "Amazon Q and Amazon Bedrock, fully managed vs. custom",
-                speakers: ["Alessandra Bilardi (Corley Cloud)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3727/Amazon-Q-and-Amazon-Bedrock-fully-managed-vs-custom"
-            }
-        ]
-    },
-    {
-        time: "14:45",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "Numeri e simboli: fenomenologia dell'AI di ieri, oggi e domani",
-                speakers: ["Paolo Caressa (GSE spa)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3707/Numeri-e-simboli-fenomenologia-dell-AI-di-ieri-oggi-e-domani"
-            },
-            {
-                track: "Track 2 - Use cases",
-                title: "Assistente virtuale al cittadino: un caso di MultiAgent distribuiti",
-                speakers: ["Tommaso Stocchi (Microsoft)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3715/Assistente-virtuale-al-cittadino-un-caso-di-MultiAgent-distribuiti"
-            },
-            {
-                track: "Track 3 - Executive",
-                title: "AI come fattore di innovazione (roundtable)",
-                speakers: ["Piergiorgio Grossi (Credem)", "Luigi Bianchi (Fastweb + Vodafone)", "Francesco Ciuccarelli (Alpitour World)"],
-                language: "Italiano",
-                link: null
-            },
-            {
-                track: "Track 4 - Ops & Tech",
-                title: "AI + A11Y = Surfa il web senza tavola...e senza mani!",
-                speakers: ["Francesco Sciuti (Devmy)"],
-                language: "Italiano",
-                link: "/eventi/sessione/3703/AI--A11Y-=-Surfa-il-web-senza-tavola--e-senza-mani"
-            }
-        ]
-    },
-    {
-        time: "15:30",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "OpenAI o1/o3: the New Scaling Laws for LLMs that can reason",
-                speakers: ["Luca Baggi (xtream)"],
-                language: "Inglese",
-                link: null
-            },
-            {
-                track: "Track 2 - Use cases",
-                title: "Da Software as a Service a Agent as a Service",
-                speakers: ["Stefano Bruna (adesso.it)"],
-                language: "Italiano",
-                link: null
-            },
-            {
-                track: "Track 3 - Executive",
-                title: "AI, dalla prospettiva CTO (roundtable)",
-                speakers: ["Francesco Dominidiato (Moneyfarm)", "Frediano Lorenzin (Dell)"],
-                language: "Italiano",
-                link: null
-            },
-            {
-                track: "Track 4 - Ops & Tech",
-                title: "We need to talk about AI, Sustainable AI",
-                speakers: ["Serena Sensini (Dedalus)", "Valeria Salis"],
-                language: "Inglese",
-                link: null
-            }
-        ]
-    },
-    {
-        time: "16:45",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "From SHAP to EBM: Explain your Gradient Boosting Models in Python",
-                speakers: ["Emanuele Fabbiani (xtream)"],
-                language: "Inglese",
-                link: null
-            },
-            null,
-            null,
-            {
-                track: "Track 4 - Ops & Tech",
-                title: "Serving LLMs on Kubernetes",
-                speakers: ["Matteo Mortari (Red Hat)", "Daniele Zonca (Red Hat)"],
-                language: "Inglese",
-                link: null
-            }
-        ]
-    },
-    {
-        time: "17:30",
-        tracks: [
-            {
-                track: "Track 1 - Data Science",
-                title: "1.58 bit LLM",
-                speakers: ["Enzo Lombardi (Cleafy)"],
-                language: "Italiano",
-                link: null
-            },
-            null,
-            null,
-            {
-                track: "Track 4 - Ops & Tech",
-                title: "Edge AI: L'intelligenza Artificiale a portata di dispositivo",
-                speakers: ["Leonardo Cavagnis (Arduino)"],
-                language: "Italiano",
-                link: null
-            }
-        ]
-    }
-];
+        ];
 
-        // User's selected talks
+        // Carica il programma utente dal localStorage o inizializza un array vuoto
         let userSchedule = JSON.parse(localStorage.getItem('userSchedule')) || [];
+        // Carica il nome utente dal localStorage o imposta 'Ospite'
+        const username = localStorage.getItem('username') || 'Ospite';
 
-        // Initialize the app
+        // Inizializza l'applicazione quando il DOM è completamente caricato
         document.addEventListener('DOMContentLoaded', function() {
-            renderSchedule();
-            renderMySchedule();
-            setupEventListeners();
+            document.getElementById('username').textContent = username; // Aggiorna il nome utente visualizzato
+            renderSchedule(); // Renderizza il programma della conferenza
+            renderMySchedule(); // Renderizza il programma personalizzato dell'utente
+            setupEventListeners(); // Imposta i listener degli eventi
+            updateStats(); // Aggiorna le statistiche iniziali
         });
 
-        // Render the conference schedule
+        // Renderizza il programma completo della conferenza
         function renderSchedule() {
             const container = document.getElementById('time-slots');
-            container.innerHTML = '';
+            container.innerHTML = ''; // Pulisce il contenitore prima di aggiungere nuovi elementi
             
             scheduleData.forEach(slot => {
                 const slotElement = document.createElement('div');
@@ -664,17 +974,19 @@
                 
                 const header = document.createElement('div');
                 header.className = 'time-header';
-                header.innerHTML = `<div class="time-title">${slot.time}</div>`;
+                // Mostra l'ora e la durata del blocco
+                header.innerHTML = `<div class="time-title">${slot.time} - ${slot.time} (${slot.duration} min)</div>`;
                 
                 const tracks = document.createElement('div');
                 tracks.className = 'tracks';
                 
                 slot.tracks.forEach((track, index) => {
-                    if (!track) return;
+                    if (!track) return; // Salta i track vuoti
                     
                     const trackCard = document.createElement('div');
                     trackCard.className = 'track-card';
                     
+                    // Controlla se il talk è già nel programma dell'utente
                     const isSelected = userSchedule.some(item => 
                         item.time === slot.time && item.track === track.track);
                     
@@ -687,7 +999,8 @@
                         <div class="speaker">${track.speakers.join(', ')}</div>
                         <button class="add-btn ${isSelected ? 'added' : ''}" 
                                 data-time="${slot.time}" 
-                                data-track="${track.track}">
+                                data-track="${track.track}"
+                                data-duration="${slot.duration}">
                             <i class="fas ${isSelected ? 'fa-check' : 'fa-plus'}"></i>
                             ${isSelected ? 'Nel tuo programma' : 'Aggiungi al mio programma'}
                         </button>
@@ -702,11 +1015,12 @@
             });
         }
 
-        // Render user's personalized schedule
+        // Renderizza il programma personalizzato dell'utente
         function renderMySchedule() {
             const container = document.getElementById('schedule-container');
             
             if (userSchedule.length === 0) {
+                // Messaggio se il programma è vuoto
                 container.innerHTML = `
                     <div class="empty-schedule">
                         <i class="fas fa-calendar-plus"></i>
@@ -717,9 +1031,9 @@
                 return;
             }
             
-            container.innerHTML = '';
-            
-            // Group by time
+            container.innerHTML = ''; // Pulisce il contenitore
+
+            // Raggruppa i talk per ora
             const groupedSchedule = {};
             userSchedule.forEach(item => {
                 if (!groupedSchedule[item.time]) {
@@ -728,7 +1042,7 @@
                 groupedSchedule[item.time].push(item);
             });
             
-            // Render each time slot
+            // Renderizza ogni blocco orario
             Object.keys(groupedSchedule).sort().forEach(time => {
                 const slot = document.createElement('div');
                 slot.className = 'schedule-item';
@@ -747,6 +1061,7 @@
                         <div class="schedule-track">${talk.track}</div>
                         <div class="schedule-title">${talk.title}</div>
                         <div class="schedule-speaker">${talk.speakers.join(', ')}</div>
+                        <div class="schedule-lang">Lingua: ${talk.language}</div>
                         <button class="remove-btn" data-time="${time}" data-track="${talk.track}">
                             <i class="fas fa-times"></i> Rimuovi
                         </button>
@@ -760,123 +1075,365 @@
             });
         }
 
-        // Setup event listeners
+        // Aggiorna le statistiche del programma (numero talk, durata totale, lingue)
+        function updateStats() {
+            document.getElementById('stat-talks').textContent = userSchedule.length;
+            
+            // Calcola la durata totale
+            const totalDuration = userSchedule.reduce((total, talk) => {
+                const slot = scheduleData.find(s => s.time === talk.time);
+                return total + (slot ? slot.duration : 0);
+            }, 0);
+            document.getElementById('stat-duration').textContent = `${totalDuration} min`;
+            
+            // Conta le lingue uniche
+            const languages = new Set(userSchedule.map(talk => talk.language));
+            document.getElementById('stat-languages').textContent = languages.size;
+        }
+
+        // Imposta i listener degli eventi per i pulsanti e le schede
         function setupEventListeners() {
-            // Tab switching
+            // Gestione del cambio di scheda (tab)
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.addEventListener('click', function() {
+                    // Rimuove la classe 'active' da tutte le schede
                     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    // Aggiunge la classe 'active' alla scheda cliccata
                     this.classList.add('active');
                     
+                    // Nasconde tutti i contenuti delle schede
                     document.querySelectorAll('.tab-content').forEach(content => {
                         content.classList.remove('active');
                     });
                     
+                    // Mostra il contenuto della scheda corrispondente
                     document.getElementById(this.dataset.tab).classList.add('active');
                 });
             });
             
-            // Add talk to schedule
+            // Listener per l'aggiunta/rimozione di talk (delegazione eventi)
             document.addEventListener('click', function(e) {
+                // Se il pulsante cliccato è 'Aggiungi al mio programma'
                 if (e.target.classList.contains('add-btn')) {
                     const time = e.target.dataset.time;
                     const track = e.target.dataset.track;
                     
-                    // Find the talk details
+                    // Trova i dettagli del talk dai dati della conferenza
                     const slot = scheduleData.find(s => s.time === time);
                     if (!slot) return;
                     
                     const talk = slot.tracks.find(t => t && t.track === track);
                     if (!talk) return;
                     
-                    // Check if already in schedule
+                    // Controlla se il talk è già nel programma dell'utente
                     const isInSchedule = userSchedule.some(item => 
                         item.time === time && item.track === track);
                     
                     if (!isInSchedule) {
-                        // Add to schedule
+                        // Aggiunge il talk al programma dell'utente
                         userSchedule.push({
                             time: time,
                             track: talk.track,
                             title: talk.title,
                             speakers: talk.speakers,
-                            language: talk.language
+                            language: talk.language,
+                            duration: slot.duration // Aggiunge la durata
                         });
                         
-                        // Save to localStorage
+                        // Salva il programma aggiornato nel localStorage
                         localStorage.setItem('userSchedule', JSON.stringify(userSchedule));
                         
-                        // Update button
+                        // Aggiorna il pulsante "Aggiungi"
                         e.target.classList.add('added');
                         e.target.innerHTML = `<i class="fas fa-check"></i> Nel tuo programma`;
                         
-                        // Show success message
+                        // Renderizza nuovamente il programma personalizzato e aggiorna le statistiche
+                        renderMySchedule();
+                        updateStats();
+                        
+                        // Mostra una notifica di successo
                         showNotification(`"${talk.title}" aggiunto al tuo programma!`);
+                    } else {
+                        // Se il talk è già nel programma, rimuovilo
+                        userSchedule = userSchedule.filter(item => 
+                            !(item.time === time && item.track === track));
+                        localStorage.setItem('userSchedule', JSON.stringify(userSchedule));
+                        
+                        // Aggiorna il pulsante
+                        e.target.classList.remove('added');
+                        e.target.innerHTML = `<i class="fas fa-plus"></i> Aggiungi al mio programma`;
+
+                        renderMySchedule();
+                        updateStats();
+                        showNotification(`"${talk.title}" rimosso dal tuo programma!`);
                     }
                 }
                 
-                // Remove from schedule
+                // Se il pulsante cliccato è 'Rimuovi' nel programma personalizzato
                 if (e.target.classList.contains('remove-btn')) {
                     const time = e.target.dataset.time;
                     const track = e.target.dataset.track;
                     
-                    // Remove from schedule
+                    // Rimuove il talk dal programma
                     userSchedule = userSchedule.filter(item => 
                         !(item.time === time && item.track === track));
                     
-                    // Save to localStorage
+                    // Salva nel localStorage
                     localStorage.setItem('userSchedule', JSON.stringify(userSchedule));
                     
-                    // Re-render both schedules
-                    renderSchedule();
+                    // Renderizza nuovamente entrambi i programmi e aggiorna le statistiche
+                    renderSchedule(); // Necessario per aggiornare lo stato dei pulsanti "Aggiungi"
                     renderMySchedule();
+                    updateStats();
                     
-                    // Show success message
+                    // Mostra una notifica di successo
                     showNotification(`Talk rimosso dal tuo programma!`);
                 }
             });
             
-            // Save schedule button
+            // Pulsante "Salva programma"
             document.getElementById('save-btn').addEventListener('click', function() {
-                // In a real app, this would save to a server
-                showNotification('Programma salvato con successo!');
+                localStorage.setItem('userSchedule', JSON.stringify(userSchedule));
+                
+                // Chiede il nome utente se non è ancora stato impostato
+                if (!localStorage.getItem('username')) {
+                    // Utilizzo di una modal personalizzata per la richiesta del nome utente
+                    showCustomPrompt('Salva il tuo programma', 'Inserisci il tuo nome per salvare il programma:', (name) => {
+                        if (name) {
+                            localStorage.setItem('username', name);
+                            document.getElementById('username').textContent = name;
+                            showNotification('Programma salvato con successo!', 'success');
+                        } else {
+                            showNotification('Salvataggio annullato o nome non inserito.', 'warning');
+                        }
+                    });
+                } else {
+                    showNotification('Programma salvato con successo!', 'success');
+                }
             });
             
-            // Share schedule button
+            // Pulsante "Condividi"
             document.getElementById('share-btn').addEventListener('click', function() {
-                // In a real app, this would share the schedule
-                showNotification('Condivisione del programma avviata!');
+                if (userSchedule.length === 0) {
+                    showNotification('Aggiungi almeno un talk al programma per condividerlo', 'warning');
+                    return;
+                }
+                
+                // Genera un link condivisibile codificando il programma
+                const data = JSON.stringify(userSchedule);
+                const base64 = btoa(encodeURIComponent(data)); // Codifica in Base64
+                const shareLink = `${window.location.origin}${window.location.pathname}?schedule=${base64}`;
+                
+                document.getElementById('share-link-input').value = shareLink;
+                document.getElementById('share-modal').style.display = 'flex'; // Mostra il modal
             });
+            
+            // Pulsante "Esporta"
+            document.getElementById('export-btn').addEventListener('click', function() {
+                if (userSchedule.length === 0) {
+                    showNotification('Il programma è vuoto, non c\'è nulla da esportare', 'warning');
+                    return;
+                }
+                
+                // Crea il contenuto del file ICS (iCalendar)
+                let icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//AI Conf 2025//Programma Conferenza//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:AI Conf 2025 - Il mio programma\n`;
+                
+                userSchedule.forEach(talk => {
+                    const slot = scheduleData.find(s => s.time === talk.time);
+                    if (!slot) return;
+                    
+                    // Data fittizia per gli eventi (es. 7 Giugno 2025)
+                    const date = new Date(2025, 5, 7); 
+                    const [hours, minutes] = talk.time.split(':').map(Number);
+                    date.setHours(hours, minutes);
+                    
+                    const endDate = new Date(date);
+                    endDate.setMinutes(endDate.getMinutes() + (slot.duration || 45)); // Usa la durata del talk o un default
+                    
+                    icsContent += `BEGIN:VEVENT
+DTSTART:${formatDateForICS(date)}
+DTEND:${formatDateForICS(endDate)}
+SUMMARY:${talk.title}
+DESCRIPTION:Track: ${talk.track}\\nRelatori: ${talk.speakers.join(', ')}\\nLingua: ${talk.language}
+LOCATION:AI Conf 2025
+END:VEVENT\n`;
+                });
+                
+                icsContent += 'END:VCALENDAR';
+                
+                // Scarica il file ICS
+                const blob = new Blob([icsContent], { type: 'text/calendar' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'AI_Conf_2025_Programma.ics';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url); // Rilascia l'URL dell'oggetto
+                
+                showNotification('Programma esportato come file ICS!', 'success');
+            });
+            
+            // Chiusura del modal di condivisione
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('share-modal').style.display = 'none';
+            });
+            
+            // Pulsante "Copia link"
+            document.getElementById('copy-link-btn').addEventListener('click', function() {
+                const input = document.getElementById('share-link-input');
+                input.select(); // Seleziona il testo
+                document.execCommand('copy'); // Copia il testo selezionato
+                showNotification('Link copiato negli appunti!', 'success');
+            });
+            
+            // Condivisione tramite social media
+            document.querySelectorAll('.share-icon').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const url = encodeURIComponent(document.getElementById('share-link-input').value);
+                    let shareUrl = '';
+                    
+                    // Costruisce l'URL di condivisione in base al social media
+                    if (this.classList.contains('facebook')) {
+                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    } else if (this.classList.contains('twitter')) {
+                        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=Guarda%20il%20mio%20programma%20per%20AI%20Conf%202025!`;
+                    } else if (this.classList.contains('linkedin')) {
+                        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    } else if (this.classList.contains('whatsapp')) {
+                        shareUrl = `https://api.whatsapp.com/send?text=Guarda%20il%20mio%20programma%20per%20AI%20Conf%202025:%20${url}`;
+                    }
+                    
+                    // Apre una nuova finestra per la condivisione
+                    window.open(shareUrl, '_blank', 'width=600,height=400');
+                });
+            });
+            
+            // Gestisce l'importazione di un programma condiviso dall'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const scheduleParam = urlParams.get('schedule');
+            if (scheduleParam) {
+                try {
+                    const json = decodeURIComponent(atob(scheduleParam)); // Decodifica il JSON
+                    const sharedSchedule = JSON.parse(json);
+                    
+                    // Chiede conferma all'utente prima di sovrascrivere il programma
+                    showCustomConfirm('Importa programma', 'Vuoi importare il programma condiviso? Il tuo programma corrente verrà sovrascritto.', (confirmed) => {
+                        if (confirmed) {
+                            userSchedule = sharedSchedule;
+                            localStorage.setItem('userSchedule', JSON.stringify(userSchedule));
+                            renderSchedule();
+                            renderMySchedule();
+                            updateStats();
+                            showNotification('Programma importato con successo!', 'success');
+                            
+                            // Rimuove il parametro 'schedule' dall'URL per evitare importazioni multiple
+                            window.history.replaceState({}, document.title, window.location.pathname);
+                        } else {
+                            showNotification('Importazione programma annullata.', 'info');
+                            window.history.replaceState({}, document.title, window.location.pathname); // Rimuove il parametro anche se annullato
+                        }
+                    });
+                } catch (e) {
+                    showNotification('Errore durante l\'importazione del programma condiviso', 'error');
+                    window.history.replaceState({}, document.title, window.location.pathname); // Rimuove il parametro in caso di errore
+                }
+            }
         }
 
-        // Show notification
-        function showNotification(message) {
-            // Remove existing notification if any
+        // Funzione per mostrare notifiche personalizzate
+        function showNotification(message, type = 'success') {
             const existing = document.querySelector('.notification');
-            if (existing) existing.remove();
+            if (existing) existing.remove(); // Rimuove eventuali notifiche esistenti
             
             const notification = document.createElement('div');
-            notification.className = 'notification';
+            notification.className = `notification ${type}`;
             notification.textContent = message;
-            notification.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: var(--accent);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 5px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 1000;
-                animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
-            `;
             
             document.body.appendChild(notification);
             
-            // Remove after animation
+            // Rimuove la notifica dopo 3 secondi (durata dell'animazione)
             setTimeout(() => {
                 notification.remove();
             }, 3000);
+        }
+
+        // Funzione per formattare la data per il file ICS (iCalendar)
+        function formatDateForICS(date) {
+            return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z/, 'Z');
+        }
+
+        // Funzione per mostrare una modal di conferma personalizzata
+        function showCustomConfirm(title, message, callback) {
+            // Rimuove eventuali modal esistenti per evitare sovrapposizioni
+            const existingModal = document.getElementById('custom-dialog-modal');
+            if (existingModal) existingModal.remove();
+
+            const modalHtml = `
+                <div class="modal" id="custom-dialog-modal" style="display: flex;">
+                    <div class="modal-content">
+                        <h2 class="modal-header">${title}</h2>
+                        <div class="modal-body">
+                            <p>${message}</p>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                            <button id="dialog-cancel" class="action-btn" style="background: #ccc; color: #333;">Annulla</button>
+                            <button id="dialog-confirm" class="action-btn save-btn">Conferma</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            document.getElementById('dialog-confirm').onclick = () => {
+                document.getElementById('custom-dialog-modal').remove();
+                callback(true);
+            };
+            document.getElementById('dialog-cancel').onclick = () => {
+                document.getElementById('custom-dialog-modal').remove();
+                callback(false);
+            };
+        }
+
+        // Funzione per mostrare una modal di prompt personalizzata
+        function showCustomPrompt(title, message, callback) {
+            // Rimuove eventuali modal esistenti
+            const existingModal = document.getElementById('custom-dialog-modal');
+            if (existingModal) existingModal.remove();
+
+            const modalHtml = `
+                <div class="modal" id="custom-dialog-modal" style="display: flex;">
+                    <div class="modal-content">
+                        <h2 class="modal-header">${title}</h2>
+                        <div class="modal-body">
+                            <p>${message}</p>
+                            <input type="text" id="dialog-input" class="share-link-input" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-top: 15px;">
+                        </div>
+                        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                            <button id="dialog-cancel" class="action-btn" style="background: #ccc; color: #333;">Annulla</button>
+                            <button id="dialog-ok" class="action-btn save-btn">OK</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            const inputField = document.getElementById('dialog-input');
+            document.getElementById('dialog-ok').onclick = () => {
+                document.getElementById('custom-dialog-modal').remove();
+                callback(inputField.value);
+            };
+            document.getElementById('dialog-cancel').onclick = () => {
+                document.getElementById('custom-dialog-modal').remove();
+                callback(null);
+            };
+            inputField.focus(); // Mette il focus sull'input
         }
     </script>
 </body>

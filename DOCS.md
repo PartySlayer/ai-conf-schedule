@@ -126,3 +126,30 @@ Ho impostato anche la reindirizzazione degli errori, così che se l'utente cerca
 Anche senza l’opzione di web hosting di S3 è ora possibile accedere al sito, e solo tramite CloudFront (sia con l’URL della distribuzione, sia con il nostro alias personalizzato):
 
 ![Sito finale](media/image27.png)
+
+Successivamente ho avuto bisogno di modificare la pagina web, motivo per cui ho deciso di integrare una pipeline Github Actions.
+
+Come da best practice ho utilizzato l'autenticazione tramite ruoli e ID provider.
+In questo modo GitHub userà delle credenziali temporanee a cui gli viene consentito accesso solo quando gli è necessario.
+
+Per fare ciò ho configurato l'Identity Provider di Github in AWS:
+
+![ID Provider](media/image28.png)
+
+Dopodiché ho creato il ruolo IAM e con la sua trust policy:
+
+
+![alt text](media/image29.png)
+
+![alt text](media/image30.png)
+
+![alt text](media/image31.png)
+
+
+Una volta terminata l'integrazione tra GitHub Actions e AWS, ho scritto la pipeline:
+
+![alt text](media/image32.png)
+
+Ogni push del repo, il file ai-conf-schedule.html viene copiato all'interno del bucket come index.html
+
+Nonostante il prossimo push includerà questi DOCS aggiornati, infatti, solamente il file ai-conf-schedule.html verrà aggiunto al bucket!
