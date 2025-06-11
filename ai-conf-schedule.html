@@ -398,175 +398,250 @@
     <script>
         // Conference schedule data
         const scheduleData = [
+    {
+        time: "9:30",
+        tracks: [
             {
-                time: "9:30",
-                tracks: [
-                    {
-                        track: "Track 1 - Data Science",
-                        title: "Keynote",
-                        speakers: [],
-                        language: "Italiano",
-                        link: null
-                    },
-                    null,
-                    null,
-                    null
-                ]
+                track: "Track 1 - Data Science",
+                title: "Keynote",
+                speakers: [],
+                language: "Italiano",
+                link: null
+            },
+            null,
+            null,
+            null
+        ]
+    },
+    {
+        time: "10:00",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "Agents: the next frontier in AI",
+                speakers: ["Lucrezia Noli (Google)"],
+                language: "Inglese",
+                link: "/eventi/sessione/3702/Agents-the-next-frontier-in-AI"
             },
             {
-                time: "10:00",
-                tracks: [
-                    {
-                        track: "Track 1 - Data Science",
-                        title: "Agents: the next frontier in AI",
-                        speakers: ["Lucrezia Noli (Google)"],
-                        language: "Inglese",
-                        link: "/eventi/sessione/3702/Agents-the-next-frontier-in-AI"
-                    },
-                    {
-                        track: "Track 2 - Use cases",
-                        title: "Ottimizzazione dei prezzi in Subito: un approccio bayesiano al Multi-Armed Bandit",
-                        speakers: ["Mattia Ridolfo (Subito)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3698/Ottimizzazione-dei-prezzi-in-Subito-un-approccio-bayesiano-al-Multi-Armed-Bandit"
-                    },
-                    null,
-                    {
-                        track: "Track 4 - Ops & Tech",
-                        title: "There's no AI without APIs",
-                        speakers: ["Talia Kohan Nassi (Postman)"],
-                        language: "Inglese",
-                        link: "/eventi/sessione/3724/There-s-no-AI-without-APIs"
-                    }
-                ]
+                track: "Track 2 - Use cases",
+                title: "Ottimizzazione dei prezzi in Subito: un approccio bayesiano al Multi-Armed Bandit",
+                speakers: ["Mattia Ridolfo (Subito)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3698/Ottimizzazione-dei-prezzi-in-Subito-un-approccio-bayesiano-al-Multi-Armed-Bandit"
             },
+            null,
             {
-                time: "10:45",
-                tracks: [
-                    {
-                        track: "Track 1 - Data Science",
-                        title: "Model Context Protocol, ovvero come liberare gli LLM e dargli accesso a tutto il mondo",
-                        speakers: ["Alessandro Vitale (Conversate)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3714/Model-Context-Protocol-ovvero-come-liberare-gli-LLM-e-dargli-accesso-a-tutto-il-mondo"
-                    },
-                    {
-                        track: "Track 2 - Use cases",
-                        title: "Analisi del Comportamento: costruzione di un agent che osserva e dialoga",
-                        speakers: ["Iulian Gabriel Coltea (Key2)", "Giovanni Nardini (Key2)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3733/Analisi-del-Comportamento-costruzione-di-un-agent-che-osserva-e-dialoga"
-                    },
-                    {
-                        track: "Track 3 - Executive",
-                        title: "Mercato del lavoro ICT: una analisi data-driven",
-                        speakers: ["Leopoldo Mondauto (Sviluppo Lavoro Italia)", "Marco Manieri (Sviluppo Lavoro Italia)"],
-                        language: "Italiano",
-                        link: null
-                    },
-                    {
-                        track: "Track 4 - Ops & Tech",
-                        title: "The Enterprise AI Developer's Playbook: LLMs, Agents, and Large-Scale Code Management",
-                        speakers: ["Alexio Cassani (FairMind srl Società Benefit)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3720/The-Enterprise-AI-Developer-s-Playbook-LLMs-Agents-and-Large-Scale-Code-Management"
-                    }
-                ]
-            },
-            {
-                time: "12:00",
-                tracks: [
-                    {
-                        track: "Track 1 - Data Science",
-                        title: "Dentro le allucinazioni nell'AI",
-                        speakers: ["Federica Pampurini (Softlab S.p.A)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3701/Dentro-le-allucinazioni-nell&#x2019;AI"
-                    },
-                    {
-                        track: "Track 2 - Use cases",
-                        title: "Eutelsat: il Customer Incident Agent",
-                        speakers: ["Pierangelo Lombardo (Eutelsat Group)", "Antonio Casoli (EutelsatGroup)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3706/Eutelsat-il-Customer-Incident-Agent"
-                    },
-                    {
-                        track: "Track 3 - Executive",
-                        title: "Data & AI in Italia: facciamo il punto (roundtable)",
-                        speakers: ["Andrea D'Onofrio (Microsoft)", "Carlo Vercellis (Politecnico di Milano)", "Marco Bani (Gruppo PD - Senato)"],
-                        language: "Italiano",
-                        link: null
-                    },
-                    null
-                ]
-            },
-            {
-                time: "12:45",
-                tracks: [
-                    {
-                        track: "Track 1 - Data Science",
-                        title: "Strategie per la preparazione dei documenti in Generative AI",
-                        speakers: ["Raffaele Rialdi"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3700/Strategie-per-la-preparazione-dei-documenti-in-Generative-AI"
-                    },
-                    {
-                        track: "Track 2 - Use cases",
-                        title: "Sviluppo e adozione di GenAI all'interno dell'azienda, l'esperienza di Acer",
-                        speakers: ["Emanuele Meazzo (Acer Europe)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3705/Sviluppo-e-adozione-di-GenAI-all-interno-dell-azienda-l-esperienza-di-Acer"
-                    },
-                    {
-                        track: "Track 3 - Executive",
-                        title: "La governance del dato (roundtable)",
-                        speakers: ["Roberto Messora (Jakala)"],
-                        language: "Italiano",
-                        link: null
-                    },
-                    {
-                        track: "Track 4 - Ops & Tech",
-                        title: "Amazon Q and Amazon Bedrock, fully managed vs. custom",
-                        speakers: ["Alessandra Bilardi (Corley Cloud)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3727/Amazon-Q-and-Amazon-Bedrock-fully-managed-vs-custom"
-                    }
-                ]
-            },
-            {
-                time: "14:45",
-                tracks: [
-                    {
-                        track: "Track 1 - Data Science",
-                        title: "Numeri e simboli: fenomenologia dell'AI di ieri, oggi e domani",
-                        speakers: ["Paolo Caressa (GSE spa)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3707/Numeri-e-simboli-fenomenologia-dell-AI-di-ieri-oggi-e-domani"
-                    },
-                    {
-                        track: "Track 2 - Use cases",
-                        title: "Assistente virtuale al cittadino: un caso di MultiAgent distribuiti",
-                        speakers: ["Tommaso Stocchi (Microsoft)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3715/Assistente-virtuale-al-cittadino-un-caso-di-MultiAgent-distribuiti"
-                    },
-                    {
-                        track: "Track 3 - Executive",
-                        title: "AI come fattore di innovazione (roundtable)",
-                        speakers: ["Piergiorgio Grossi (Credem)", "Luigi Bianchi (Fastweb + Vodafone)", "Francesco Ciuccarelli (Alpitour World)"],
-                        language: "Italiano",
-                        link: null
-                    },
-                    {
-                        track: "Track 4 - Ops & Tech",
-                        title: "AI + A11Y = Surfa il web senza tavola...e senza mani!",
-                        speakers: ["Francesco Sciuti (Devmy)"],
-                        language: "Italiano",
-                        link: "/eventi/sessione/3703/AI--A11Y-=-Surfa-il-web-senza-tavola--e-senza-mani"
-                    }
-                ]
+                track: "Track 4 - Ops & Tech",
+                title: "There's no AI without APIs",
+                speakers: ["Talia Kohan Nassi (Postman)"],
+                language: "Inglese",
+                link: "/eventi/sessione/3724/There-s-no-AI-without-APIs"
             }
-        ];
+        ]
+    },
+    {
+        time: "10:45",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "Model Context Protocol, ovvero come liberare gli LLM e dargli accesso a tutto il mondo",
+                speakers: ["Alessandro Vitale (Conversate)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3714/Model-Context-Protocol-ovvero-come-liberare-gli-LLM-e-dargli-accesso-a-tutto-il-mondo"
+            },
+            {
+                track: "Track 2 - Use cases",
+                title: "Analisi del Comportamento: costruzione di un agent che osserva e dialoga",
+                speakers: ["Iulian Gabriel Coltea (Key2)", "Giovanni Nardini (Key2)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3733/Analisi-del-Comportamento-costruzione-di-un-agent-che-osserva-e-dialoga"
+            },
+            {
+                track: "Track 3 - Executive",
+                title: "Mercato del lavoro ICT: una analisi data-driven",
+                speakers: ["Leopoldo Mondauto (Sviluppo Lavoro Italia)", "Marco Manieri (Sviluppo Lavoro Italia)"],
+                language: "Italiano",
+                link: null
+            },
+            {
+                track: "Track 4 - Ops & Tech",
+                title: "The Enterprise AI Developer's Playbook: LLMs, Agents, and Large-Scale Code Management",
+                speakers: ["Alexio Cassani (FairMind srl Società Benefit)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3720/The-Enterprise-AI-Developer-s-Playbook-LLMs-Agents-and-Large-Scale-Code-Management"
+            }
+        ]
+    },
+    {
+        time: "12:00",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "Dentro le allucinazioni nell'AI",
+                speakers: ["Federica Pampurini (Softlab S.p.A)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3701/Dentro-le-allucinazioni-nell&#x2019;AI"
+            },
+            {
+                track: "Track 2 - Use cases",
+                title: "Eutelsat: il Customer Incident Agent",
+                speakers: ["Pierangelo Lombardo (Eutelsat Group)", "Antonio Casoli (EutelsatGroup)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3706/Eutelsat-il-Customer-Incident-Agent"
+            },
+            {
+                track: "Track 3 - Executive",
+                title: "Data & AI in Italia: facciamo il punto (roundtable)",
+                speakers: ["Andrea D'Onofrio (Microsoft)", "Carlo Vercellis (Politecnico di Milano)", "Marco Bani (Gruppo PD - Senato)"],
+                language: "Italiano",
+                link: null
+            },
+            null
+        ]
+    },
+    {
+        time: "12:45",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "Strategie per la preparazione dei documenti in Generative AI",
+                speakers: ["Raffaele Rialdi"],
+                language: "Italiano",
+                link: "/eventi/sessione/3700/Strategie-per-la-preparazione-dei-documenti-in-Generative-AI"
+            },
+            {
+                track: "Track 2 - Use cases",
+                title: "Sviluppo e adozione di GenAI all'interno dell'azienda, l'esperienza di Acer",
+                speakers: ["Emanuele Meazzo (Acer Europe)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3705/Sviluppo-e-adozione-di-GenAI-all-interno-dell-azienda-l-esperienza-di-Acer"
+            },
+            {
+                track: "Track 3 - Executive",
+                title: "La governance del dato (roundtable)",
+                speakers: ["Roberto Messora (Jakala)"],
+                language: "Italiano",
+                link: null
+            },
+            {
+                track: "Track 4 - Ops & Tech",
+                title: "Amazon Q and Amazon Bedrock, fully managed vs. custom",
+                speakers: ["Alessandra Bilardi (Corley Cloud)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3727/Amazon-Q-and-Amazon-Bedrock-fully-managed-vs-custom"
+            }
+        ]
+    },
+    {
+        time: "14:45",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "Numeri e simboli: fenomenologia dell'AI di ieri, oggi e domani",
+                speakers: ["Paolo Caressa (GSE spa)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3707/Numeri-e-simboli-fenomenologia-dell-AI-di-ieri-oggi-e-domani"
+            },
+            {
+                track: "Track 2 - Use cases",
+                title: "Assistente virtuale al cittadino: un caso di MultiAgent distribuiti",
+                speakers: ["Tommaso Stocchi (Microsoft)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3715/Assistente-virtuale-al-cittadino-un-caso-di-MultiAgent-distribuiti"
+            },
+            {
+                track: "Track 3 - Executive",
+                title: "AI come fattore di innovazione (roundtable)",
+                speakers: ["Piergiorgio Grossi (Credem)", "Luigi Bianchi (Fastweb + Vodafone)", "Francesco Ciuccarelli (Alpitour World)"],
+                language: "Italiano",
+                link: null
+            },
+            {
+                track: "Track 4 - Ops & Tech",
+                title: "AI + A11Y = Surfa il web senza tavola...e senza mani!",
+                speakers: ["Francesco Sciuti (Devmy)"],
+                language: "Italiano",
+                link: "/eventi/sessione/3703/AI--A11Y-=-Surfa-il-web-senza-tavola--e-senza-mani"
+            }
+        ]
+    },
+    {
+        time: "15:30",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "OpenAI o1/o3: the New Scaling Laws for LLMs that can reason",
+                speakers: ["Luca Baggi (xtream)"],
+                language: "Inglese",
+                link: null
+            },
+            {
+                track: "Track 2 - Use cases",
+                title: "Da Software as a Service a Agent as a Service",
+                speakers: ["Stefano Bruna (adesso.it)"],
+                language: "Italiano",
+                link: null
+            },
+            {
+                track: "Track 3 - Executive",
+                title: "AI, dalla prospettiva CTO (roundtable)",
+                speakers: ["Francesco Dominidiato (Moneyfarm)", "Frediano Lorenzin (Dell)"],
+                language: "Italiano",
+                link: null
+            },
+            {
+                track: "Track 4 - Ops & Tech",
+                title: "We need to talk about AI, Sustainable AI",
+                speakers: ["Serena Sensini (Dedalus)", "Valeria Salis"],
+                language: "Inglese",
+                link: null
+            }
+        ]
+    },
+    {
+        time: "16:45",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "From SHAP to EBM: Explain your Gradient Boosting Models in Python",
+                speakers: ["Emanuele Fabbiani (xtream)"],
+                language: "Inglese",
+                link: null
+            },
+            null,
+            null,
+            {
+                track: "Track 4 - Ops & Tech",
+                title: "Serving LLMs on Kubernetes",
+                speakers: ["Matteo Mortari (Red Hat)", "Daniele Zonca (Red Hat)"],
+                language: "Inglese",
+                link: null
+            }
+        ]
+    },
+    {
+        time: "17:30",
+        tracks: [
+            {
+                track: "Track 1 - Data Science",
+                title: "1.58 bit LLM",
+                speakers: ["Enzo Lombardi (Cleafy)"],
+                language: "Italiano",
+                link: null
+            },
+            null,
+            null,
+            {
+                track: "Track 4 - Ops & Tech",
+                title: "Edge AI: L'intelligenza Artificiale a portata di dispositivo",
+                speakers: ["Leonardo Cavagnis (Arduino)"],
+                language: "Italiano",
+                link: null
+            }
+        ]
+    }
+];
 
         // User's selected talks
         let userSchedule = JSON.parse(localStorage.getItem('userSchedule')) || [];
